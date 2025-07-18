@@ -17,6 +17,12 @@
 <div class="customer order section-{{ section.id }}-padding">
   <div>
     <h1 class="customer__title">{{ 'customer.account.title' | t }}</h1>
+    {% if order.metafields.custom.printess_pdf %}
+  <a href="{{ order.metafields.custom.printess_pdf }}" target="_blank" class="btn">
+    Preview PDF
+  </a>
+{% endif %}
+
     <a href="{{ routes.account_url }}">{{ 'customer.account.return' | t }}</a>
   </div>
 
@@ -44,11 +50,7 @@
             <th id="ColumnTotal" scope="col" role="columnheader">{{ 'customer.order.total' | t }}</th>
           </tr>
         </thead>
-        {% if order.metafields.custom.printess_pdf %}
-  <a href="{{ order.metafields.custom.printess_pdf }}" target="_blank" class="btn">
-    Preview PDF
-  </a>
-{% endif %}
+        
 
         <tbody role="rowgroup">
           {%- for line_item in order.line_items -%}
